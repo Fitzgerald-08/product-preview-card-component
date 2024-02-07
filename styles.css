@@ -4,9 +4,10 @@
     
     --clr-primary-900: hsl(212, 21%, 14%);
     --clr-primary-600: hsl(228, 12%, 48%);
-    --clr-primary-100: hsl(0, 0%, 100%);
+    --clr-primary-300: hsl(30, 38%, 92%);
 
-    --bg-color: hsl(30, 38%, 92%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+
 
     --ff-primary: 'Fraunces', sans-serif;
     --ff-secondary: 'Montserrat', sans-serif;
@@ -14,11 +15,17 @@
     --fw-bold: 700;
     --fw-semibold: 500;
 
-    --fs-300: 0.78125rem;
+    --fs-300: 0.75rem;
     --fs-400: 0.8125rem;
     --fs-500: 0.875rem;
+    --fs-600: 0.9375rem;
     --fs-700: 1.85rem;
     --fs-900: 2rem;
+}
+
+img, picture {
+    display: block;
+    max-width: 100%;
 }
 
 *, *::before, *::after {
@@ -28,159 +35,101 @@
 }
 
 body {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
+    display: grid;
+    place-content: center;
     min-height: 100dvh;
-    padding: 1.5rem 1rem; 
-    background: var(--bg-color);
+    padding: 1rem;
+    background: var(--clr-primary-300);
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    height: 610px;
-    width: 100%;
-    border-radius: 7px;
-    background: var(--clr-primary-100);
-}
+    color: var(--clr-primary-900);
+    font-size: var(--fs-600);
+    font-family: var(--ff-primary);
 
-picture {
-    height: 240px;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 7px 7px 0 0;
+    display: grid;
+    /* FOR THIS PART, I'LL HAVE TO WATCH KEVIN POWELL'S VIDEO AND USE THE SAME TRICK HE USED TO STRETCH OUT THE CART BUTTON */
+    max-width: 400px;
+    overflow: hidden;
+    background: var(--clr-neutral-100);
+    border-radius: 8px;
 }
 
 .product-description {
-    padding: 1.5rem 1.5rem 0;
+    display: grid;
+    gap: 1.25rem;
+    padding:  1.5rem;
 }
 
-.card-product {
-    font-size: var(--fs-300);
-    font-weight: var(--fw-semibold);
-    font-family: var(--ff-secondary);
+.product__category {
     color: var(--clr-primary-600);
-    letter-spacing: 0.275rem;
-    margin-bottom: 1em;
-}
-
-.card-title {
-    font-size: var(--fs-900);
+    font-size: var(--fs-300);
+    font-family: var(--ff-secondary);
     font-weight: var(--fw-semibold);
-    font-family: var(--ff-primary);
-    color: var(--clr-primary-900);
-    line-height: 1;
-    margin-bottom: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
 
-.card-description {
+.product__title {
+    font-size: var(--fs-900);
+    font-weight: var(--fw-bold);
+    line-height: 1; 
+}
+
+.product__description {
     font-size: var(--fs-500);
     font-weight: var(--fw-semibold);
     font-family: var(--ff-secondary);
     color: var(--clr-primary-600);
-    line-height: 1.65;
-    margin-bottom: 1.35em;
+    line-height: 1.5;
 }
 
-.card-price {
+.product__price {
     display: flex;
+    gap: 1rem;
     align-items: center;
-    font-family: var(--ff-primary);
-    font-weight: var(--fw-semibold);
-    font-size: var(--fs-900);
+    font-size: var(--fs-700);
     color: var(--clr-accent-700);
-    margin-bottom: 0.5em;
 }
 
-.card-price span {
-    font-family: var(--ff-secondary);
+.product__price span {
     font-size: var(--fs-400);
+    font-family: var(--ff-secondary);
     color: var(--clr-primary-600);
     text-decoration: line-through;
-    font-weight: var(--fw-semibold);
-    padding-left: 1.25rem;
 }
 
 .cart-button {
-    text-align: center;
-    background: var(--clr-accent-700);
-    font-size: var(--fs-500);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7125rem;
+
     font-family: var(--ff-secondary);
+    font-size: var(--fs-600);
     font-weight: var(--fw-bold);
-    color: var(--clr-primary-100);
-    border-radius: 7px;
-    width: 100%;
-    padding-block: 1.05em;
-    border: none;
+    color: var(--clr-neutral-100);
+    background: var(--clr-accent-700);
+
+    padding: 1em 1.5em;
+    border: 0;
+    border-radius: 10px
 }
 
 .cart-button::before {
-    margin-right: 0.675em;
-    content: url('images/icon-cart.svg');
+    content: "";
+    width: 15px;
+    height: 16px;
+    background-image: url(images/icon-cart.svg);
 }
 
-.cart-button:hover,
-.cart-button:focus-within {
-    cursor: pointer;
-    background: var(--clr-accent-900);
-}
-
-
-
-@media only screen and (min-width: 40em) {
-    :root {
-        --fs-300: 0.6rem;
-        --fs-500: 0.785rem;
-        --fs-900: 1.8rem;
-    }
-
-    body {
-        align-items: center;
-    }
-
-    .product-description > * {
-        margin: 0;
-    }
-
+@media only screen and (min-width: 700px) {
     .card {
-        display: flex;
-        flex-direction: row;
-        width: 540px;
-        height: 400px;
-        background: var(--clr-primary-100);
-        border-radius: 7px;
-    }
-
-    picture {
-        flex-basis: 50%;
-        height: 100%;
-    }
-
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        border-radius: 7px 0 0 7px;
+        grid-template-columns: 1fr 1fr;
+        max-width: 600px;
     }
 
     .product-description {
-        flex-basis: 50%;
-        padding-top: 1.75rem;
-        padding-inline: 1.8rem;
-    }
-
-    .card-product {
-        margin-bottom: 2em;
-        letter-spacing: 0.8;
-    }
-    
-    .card-description {
-        line-height: 1.65;
+        padding: 2rem;
     }
 }
